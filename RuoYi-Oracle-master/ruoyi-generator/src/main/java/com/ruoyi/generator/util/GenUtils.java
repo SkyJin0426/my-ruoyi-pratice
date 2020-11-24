@@ -1,5 +1,6 @@
 package com.ruoyi.generator.util;
 
+import java.io.File;
 import java.util.Arrays;
 import org.apache.commons.lang3.RegExUtils;
 import com.ruoyi.common.constant.GenConstants;
@@ -30,6 +31,8 @@ public class GenUtils
 
         //fixme 设置路径
         genTable.setOptions(GenConfig.getParentMenuId());
+
+        genTable.setGenPath(GenConfig.getPathInfo()+ File.separator+genTable.getTableName());
 
     }
 

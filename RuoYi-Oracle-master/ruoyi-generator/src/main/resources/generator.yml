@@ -11,3 +11,5 @@ gen:
   tablePrefix: sys_
   # 默认上级菜单
   parentMenuId: {"parentMenuId":"3","treeName":"","treeParentCode":"","parentMenuName":"系统工具","treeCode":""}
+  # 生成代码路径文件前缀
+  pathInfo: D:\\idea_workspace_my_pratice\\my-ruoyi-pratice\\RuoYi-Oracle-master\\generator_code

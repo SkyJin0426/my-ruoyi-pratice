@@ -286,7 +286,9 @@
 	    }
 	    
 	    var prefix = ctx + "tool/gen";
+	    var genPathVal;
 		$(function() {
+			genPathVal=$("#genPath").val();
 		    var options = {
 		        url: prefix + "/column/list",
 		        sortName: "sort",
@@ -502,12 +504,15 @@
 			var genType = $(event.target).val();
 			pathInfoVisible(genType);
 		});
-		
+
+
 		function pathInfoVisible(genType) {
+			debugger;
 			if("0" == genType){
 				$("#genPath").val("/");
 				$("#pathinfo").addClass("hidden");
 			} else if("1" == genType){
+				$("#genPath").val(genPathVal);
 				$("#pathinfo").removeClass("hidden");
 			}
 		}

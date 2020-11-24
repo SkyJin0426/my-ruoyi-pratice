@@ -30,6 +30,9 @@ public class GenConfig
     /** 上级菜单 */
     public static String parentMenuId;
 
+    /** 生成代码文件前缀 */
+    public static String pathInfo;
+
     public static String getAuthor()
     {
         return author;
@@ -84,4 +87,16 @@ public class GenConfig
     {
         return parentMenuId;
     }
+
+    @Value("${pathInfo}")
+    public void setPathInfo(String pathInfo)
+    {
+        GenConfig.pathInfo = pathInfo;
+    }
+
+    public static String getPathInfo()
+    {
+        return pathInfo;
+    }
+
 }
