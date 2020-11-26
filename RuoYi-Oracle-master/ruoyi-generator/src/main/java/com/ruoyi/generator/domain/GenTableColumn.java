@@ -335,11 +335,13 @@ public class GenTableColumn extends BaseEntity
         return isSuperColumn(this.javaField);
     }
 
+    //domain.java.vm 的过滤字段
     public static boolean isSuperColumn(String javaField)
     {
         return StringUtils.equalsAnyIgnoreCase(javaField,
                 // BaseEntity
-                "createBy", "createTime", "updateBy", "updateTime", "remark",
+                //"createBy", "createTime", "updateBy", "updateTime", "remark",
+                "createBy", "updateBy", "remark",
                 // TreeEntity
                 "parentName", "parentId", "orderNum", "ancestors");
     }

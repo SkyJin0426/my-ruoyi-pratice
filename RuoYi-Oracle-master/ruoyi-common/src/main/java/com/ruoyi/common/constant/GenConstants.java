@@ -54,7 +54,8 @@ public class GenConstants
             "update_time", "remark" };
 
     /** Entity基类字段 */
-    public static final String[] BASE_ENTITY = { "createBy", "createTime", "updateBy", "updateTime", "remark" };
+    public static final String[] BASE_ENTITY = { "createBy",  "updateBy",  "remark" };
+    //fixme 生成模板过滤字段 "createTime","updateTime",
 
     /** Tree基类字段 */
     public static final String[] TREE_ENTITY = { "parentName", "parentId", "orderNum", "ancestors" };

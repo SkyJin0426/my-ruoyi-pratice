@@ -2,7 +2,7 @@
 spring:
     datasource:
         type: com.alibaba.druid.pool.DruidDataSource
-        driverClassName: oracle.jdbc.driver.OracleDriver
+        driverClassName: oracle.jdbc.OracleDriver
         druid:
             # 主库数据源
             master:

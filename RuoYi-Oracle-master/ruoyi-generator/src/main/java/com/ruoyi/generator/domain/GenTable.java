@@ -372,7 +372,7 @@ public class GenTable extends BaseEntity
     {
         return isSuperColumn(this.tplCategory, javaField);
     }
-
+    //fixme domain.java.vm 的过滤字段
     public static boolean isSuperColumn(String tplCategory, String javaField)
     {
         if (isTree(tplCategory))
