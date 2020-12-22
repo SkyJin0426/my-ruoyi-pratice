@@ -113,7 +113,7 @@ public class ${ClassName}Controller extends BaseController {
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(${ClassName} ${className}) {
-        ${className}.setId(IdUtils.fastSimpleUUID());
+        ${className}.set${pkJavaField}(IdUtils.fastSimpleUUID());
         return toAjax(${className}Service.insert${ClassName}(${className}));
     }
 

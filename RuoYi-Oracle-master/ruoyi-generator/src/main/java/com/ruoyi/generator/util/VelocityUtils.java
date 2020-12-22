@@ -55,6 +55,8 @@ public class VelocityUtils
         velocityContext.put("author", genTable.getFunctionAuthor());
         velocityContext.put("datetime", DateUtils.getDate());
         velocityContext.put("pkColumn", genTable.getPkColumn());
+        String javaField =genTable.getPkColumn().getJavaField();
+        velocityContext.put("pkJavaField", javaField.substring(0,1).toUpperCase() + javaField.substring(1));
         velocityContext.put("importList", getImportList(genTable));
         velocityContext.put("permissionPrefix", getPermissionPrefix(moduleName, businessName));
         velocityContext.put("columns", genTable.getColumns());
