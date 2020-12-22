@@ -1,6 +1,8 @@
 package com.ruoyi.generator.mapper;
 
 import java.util.List;
+
+import com.ruoyi.common.core.domain.entity.SysMenu;
 import com.ruoyi.generator.domain.GenTable;
 
 /**
@@ -63,6 +65,7 @@ public interface GenTableMapper
      * @return seq_sys_menu.nextval
      */
     public long selectMenuId();
+    public SysMenu selectMenuIdByName(String menuName);
 
     /**
      * 新增业务

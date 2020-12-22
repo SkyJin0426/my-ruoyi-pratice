@@ -96,13 +96,9 @@ public class ${ClassName}ServiceImpl extends ServiceImpl<${ClassName}Mapper, ${C
     public int update${ClassName}(${ClassName} ${className}) {
         #foreach ($column in $columns)
             #if($column.javaField == 'updateTime')
-                ${className}.setUpdateTime(DateUtils.getNowDate());
-            #end
-        #end
-        #if($table.sub)
-                ${className}Mapper.delete${subClassName}By${subTableFkClassName}(${className}.get${pkColumn.capJavaField}())
-            ;
-            insert${subClassName}(${className});
+        ${className}.setUpdateTime(DateUtils.getNowDate());#end#end#if($table.sub)
+        ${className}Mapper.delete${subClassName}By${subTableFkClassName}(${className}.get${pkColumn.capJavaField}());
+        insert${subClassName}(${className});
         #end
         return ${className}Mapper.update${ClassName}(${className});
     }
@@ -119,7 +115,7 @@ public class ${ClassName}ServiceImpl extends ServiceImpl<${ClassName}Mapper, ${C
     @Override
     public int delete${ClassName}ByIds(String ids) {
         #if($table.sub)
-                ${className}Mapper.delete${subClassName}By${subTableFkClassName}s(Convert.toStrArray(ids));
+        ${className}Mapper.delete${subClassName}By${subTableFkClassName}s(Convert.toStrArray(ids));
         #end
         return ${className}Mapper.delete${ClassName}ByIds(Convert.toStrArray(ids));
     }
@@ -133,7 +129,7 @@ public class ${ClassName}ServiceImpl extends ServiceImpl<${ClassName}Mapper, ${C
     @Override
     public int delete${ClassName}ById(${pkColumn.javaType} ${pkColumn.javaField}) {
         #if($table.sub)
-                ${className}Mapper.delete${subClassName}By${subTableFkClassName}(${pkColumn.javaField});
+        ${className}Mapper.delete${subClassName}By${subTableFkClassName}(${pkColumn.javaField});
         #end
         return ${className}Mapper.delete${ClassName}ById(${pkColumn.javaField});
     }
@@ -163,7 +159,6 @@ public class ${ClassName}ServiceImpl extends ServiceImpl<${ClassName}Mapper, ${C
     }
 #end
 #if($table.sub)
-
     /**
      * 新增${subTable.functionName}信息
      *
@@ -180,7 +175,7 @@ public class ${ClassName}ServiceImpl extends ServiceImpl<${ClassName}Mapper, ${C
                 list.add(${subclassName});
             }
             if (list.size() > 0) {
-                    ${className}Mapper.batch${subClassName}(list);
+                ${className}Mapper.batch${subClassName}(list);
             }
         }
     }

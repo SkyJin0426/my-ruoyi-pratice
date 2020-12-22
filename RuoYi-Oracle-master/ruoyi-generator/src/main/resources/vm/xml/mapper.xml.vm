@@ -84,11 +84,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
         
     <insert id="insert${ClassName}" parameterType="${ClassName}">
-#if($pkColumn.increment)
-        <selectKey keyProperty="${pkColumn.javaField}" resultType="long" order="BEFORE">
-            SELECT seq_${tableName}.NEXTVAL as ${pkColumn.javaField} FROM DUAL
-        </selectKey>
-#end
         insert into ${tableName}
         <trim prefix="(" suffix=")" suffixOverrides=",">
 #foreach($column in $columns)

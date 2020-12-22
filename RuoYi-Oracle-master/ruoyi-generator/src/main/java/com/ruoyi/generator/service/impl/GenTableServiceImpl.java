@@ -10,6 +10,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
+
+import com.ruoyi.common.core.domain.entity.SysMenu;
 import org.apache.commons.io.IOUtils;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
@@ -246,8 +248,17 @@ public class GenTableServiceImpl implements IGenTableService
     {
         // 查询表信息
         GenTable table = genTableMapper.selectGenTableByName(tableName);
+        String functionName =table.getFunctionName();
+        SysMenu sysMenu= genTableMapper.selectMenuIdByName(functionName);
+        //todo: 判断是否已经生成
         // 获取菜单id序列，用于生成菜单sql语句
-        long menuId = genTableMapper.selectMenuId();
+        long menuId;
+        if(null==sysMenu){
+            menuId = genTableMapper.selectMenuId();
+        }else {
+            menuId=sysMenu.getMenuId();
+        }
+
         table.setMenuId(menuId);
         // 设置主子表信息
         setSubTable(table);
