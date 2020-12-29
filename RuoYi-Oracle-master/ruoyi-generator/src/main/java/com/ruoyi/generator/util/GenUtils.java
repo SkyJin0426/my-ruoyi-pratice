@@ -63,6 +63,7 @@ public class GenUtils
         {
             column.setJavaType(GenConstants.TYPE_DATE);
             column.setHtmlType(GenConstants.HTML_DATETIME);
+            column.setQueryType(GenConstants.QUERY_DATE_BETWEEN);
         }
         else if (arraysContains(GenConstants.COLUMNTYPE_NUMBER, dataType))
         {
@@ -106,6 +107,7 @@ public class GenUtils
         }
 
         // 查询字段类型
+        // 数据库默认值EQ
         if (StringUtils.endsWithIgnoreCase(columnName, "name"))
         {
             column.setQueryType(GenConstants.QUERY_LIKE);
@@ -122,7 +124,7 @@ public class GenUtils
             //todo 给下拉框设置类型
             // , |  :
             //备注加上中文括号 （ ， 可以拆分
-            //doto demo 类型,测试字典:key_test|标签1:v1&标签2:v2&标签3:v3
+            //doto demo 类型（ ,测试字典:key_test|标签1:v1&标签2:v2&标签3:v3
             String columnComment = column.getColumnComment();
             if(columnComment.contains(",")&&columnComment.contains("|")&&columnComment.contains(":")){
                 String  dataStr=columnComment.split(",")[1];

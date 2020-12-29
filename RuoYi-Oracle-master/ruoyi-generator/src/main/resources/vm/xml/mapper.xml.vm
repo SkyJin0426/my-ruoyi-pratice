@@ -54,7 +54,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 #elseif($queryType == "LIKE")
             <if test="$javaField != null #if($javaType == 'String' ) and $javaField.trim() != ''#end"> and $columnName like concat(concat('%', #{$javaField}), '%')</if>
 #elseif($queryType == "BETWEEN")
-            <if test="params.begin$AttrName != null and params.begin$AttrName != '' and params.end$AttrName != null and params.end$AttrName != ''"> and $columnName between #{params.begin$AttrName} and #{params.end$AttrName}</if>
+            <if test="params.begin$AttrName != null and params.begin$AttrName != '' and params.end$AttrName != null and params.end$AttrName != ''">
+                and $columnName between
+                to_date( concat(#{params.begin$AttrName},'00:00:00') , 'yyyy-mm-dd hh24:mi:ss' )  and
+                to_date( concat(#{params.end$AttrName},'23:59:59'), 'yyyy-mm-dd hh24:mi:ss' )
+             </if>
 #end
 #end
 #end
