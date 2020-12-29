@@ -33,6 +33,8 @@ public class GenUtils
         genTable.setOptions(GenConfig.getParentMenuId());
 
         genTable.setGenPath(GenConfig.getPathInfo()+ File.separator+genTable.getTableName());
+        //（0zip压缩包 1自定义路径）
+        genTable.setGenType("1");
 
     }
 
@@ -41,7 +43,7 @@ public class GenUtils
      */
     public static void initColumnField(GenTableColumn column, GenTable table)
     {
-        //fixme 根据数据库字段 配置java字段
+        //todo 根据数据库字段 配置java字段
         String dataType = getDbType(column.getColumnType());
         String columnName = column.getColumnName();
         column.setTableId(table.getTableId());
@@ -117,7 +119,18 @@ public class GenUtils
         else if (StringUtils.endsWithIgnoreCase(columnName, "type")
                 || StringUtils.endsWithIgnoreCase(columnName, "sex"))
         {
+            //todo 给下拉框设置类型
+            // , |  :
+            //备注加上中文括号 （ ， 可以拆分
+            //doto demo 类型,测试字典:key_test|标签1:v1&标签2:v2&标签3:v3
+            String columnComment = column.getColumnComment();
+            if(columnComment.contains(",")&&columnComment.contains("|")&&columnComment.contains(":")){
+                String  dataStr=columnComment.split(",")[1];
+                String dicType= dataStr.split("\\|")[0].split(":")[1];
+                column.setDictType(dicType);
+            }
             column.setHtmlType(GenConstants.HTML_SELECT);
+
         }
         // 文件字段设置上传控件
         else if (StringUtils.endsWithIgnoreCase(columnName, "file"))

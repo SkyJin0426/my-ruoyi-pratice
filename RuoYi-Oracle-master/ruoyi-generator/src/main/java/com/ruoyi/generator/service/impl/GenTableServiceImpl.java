@@ -266,7 +266,7 @@ public class GenTableServiceImpl implements IGenTableService
         setPkColumn(table);
 
         VelocityInitializer.initVelocity();
-
+//获取表信息
         VelocityContext context = VelocityUtils.prepareContext(table);
 
         // 获取模板列表

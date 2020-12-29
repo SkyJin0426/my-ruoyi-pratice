@@ -27,3 +27,19 @@ nomaxvalue
 nominvalue
 cache 20;
 #end
+
+
+
+#foreach ($column in $columns)
+#if("$column.dictType"!="")
+#set ($s = $column.columnComment.split(","))
+#set ($ss = $s.get(1).split("[|]"))
+#set ($menu = $ss.get(0).split(":"))
+insert into sys_dict_type (dict_id, dict_name, dict_type, status, create_by, create_time, update_by, update_time, remark) values (seq_sys_dict_type.NEXTVAL, '$menu.get(0)', '$menu.get(1)', '0', 'admin', sysdate, null, null, '$menu.get(0)');
+#set($listClass= ["primary","success","info","warning","danger"])
+#foreach ($sss in $ss.get(1).split("&") )
+#set ($data = $sss.split(":"))
+insert into sys_dict_data (dict_code, dict_sort, dict_label, dict_value, dict_type, css_class, list_class, is_default, status, create_by, create_time, update_by, update_time, remark) values (seq_sys_dict_data.NEXTVAL, ${foreach.index} , '$data.get(0)', '$data.get(1)', '$menu.get(1)',null,'$listClass.get(${foreach.index})', 'Y', '0', 'admin', sysdate, null, null, '$data.get(0)');
+#end
+#end
+#end
